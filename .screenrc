@@ -1,0 +1,71 @@
+# L as escape key
+escape ^Ll
+
+# Allgemein
+startup_message  off   # Keine Willkommensnachricht
+vbell            off   # Kein visuelles Blinken
+msgwait 1              # Nachrichten für 1 Sekunden anzeigen
+defutf8          on    # utf8 bei neuen fenstern
+autodetach       on    # on = default
+shelltitle   'bash'    # Fenstertitel
+hardcopydir $HOME      # Screenshots ins Homeverzeichnis
+defscrollback 10000    # Buffer
+defmonitor off         # Aktivitäten nicht in Fenstertitel schreiben
+
+# Enable 256 color term
+# term xterm-256color
+
+# Cache 30000 lines for scroll back
+defscrollback 30000
+
+# backtick 101 30 15 $HOME/bin/mailstatus.sh
+
+hardstatus alwayslastline
+# Very nice tabbed colored hardstatus line
+hardstatus string '%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= %{KG} %H%{KW}|%{KY}%101`%{KW}|%D %M %d %Y%{= Kc} %C%A%{-}'
+# hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W}%c %{g}]'
+
+#
+# http://www.gnu.org/software/screen/manual/html_node/String-Escapes.html
+#
+# %{= wK} : set colors to bright white (W) on bright black (K) and keep current text styles (=)
+# %H      : hostname
+# [       : opening bracket character
+# %`      : print output of 'backtick' command (defined elsewhere in .screenrc)
+# ]       : closing bracket character
+# %{= wW} : set colors to white (w) on bright black (K) and keep current text styles (=)
+# |       : bar character
+# ${-}    : restore colors to previous colors / undo last color change
+# %-Lw    : list windows before current window (L [optional] = "include flags")
+# %{= bW} : set colors to bright white (W) on blue (b) and keep current text styles (=)
+# %f      : window flags
+# %t      : window title
+# %{-}    : restore colors to previous colors / undo last color change
+# %+Lw    : list windows after current window (L [optional] = "include flags")
+# %=      : expand to fill all space (used here to make remaining content flush right)
+# %C      : current time (12-hr; 24-hr is %c)
+# %a      : am/pm (lowercase; uppercase is %A)
+# %Y      : current year
+# -       : hyphen character
+# %m      : current month (0-padded; %M for "Jan" etc.)
+# -       : hyphen character
+# %d      : current date (0-padded)
+
+
+# termcapinfo xterm*|rxvt*|kterm*|Eterm* 'hs:ts=\E]0;:fs=\007:ds=\E]0;\007'
+# defhstatus "screen ^E (^Et) | $USER@^EH"
+# hardstatus off
+
+# http://stackoverflow.com/questions/359109/using-the-scrollwheel-in-gnu-screen
+# works only when no hard status is present
+# termcapinfo xterm* ti@:te@
+# http://unix.stackexchange.com/questions/43229/is-there-a-way-to-make-screen-scroll-like-a-normal-terminal
+# termcapinfo xterm* ti@:te@
+# termcapinfo xterm 'hs:ts=\E]2;:fs=07:ds=\E]2;screen07'
+
+# caption always # activates window caption
+# caption string '%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= %{KG} %H%{KW}|%{KY}%101`%{KW}|%D %M %d %Y%{= Kc} %C%A%{-}'
+# caption string '%{= wk}[ %{k}%H %{k}][%= %{= wk}%?%-Lw%?%{r}(%{r}%n*%f%t%?(%u)%?%{r})%{k}%?%+Lw%?%?%= %{k}][%{b} %d/%m %{k}%c %{k}]' # good looking window bar
+
+bindkey -k k3 prev # F3 for previous window
+bindkey -k k4 next # F4 for next window
